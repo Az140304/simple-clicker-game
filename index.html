@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="./style.css">
+    
+  </head>
+  <body>
+    
+    <div class="container">
+      
+      <div id="overlay">
+        <div id="reset-warning">
+          Are you sure you want to reset progress?
+          <div class="decision-box">
+            <div class="decision-button" id="yes" onclick="resetNilai()">
+              <i class="fa-solid fa-check"></i>
+              Yes
+            </div>
+            <div class="decision-button" id="no" onclick="tutupOverlay()">
+              <i class="fa-solid fa-x"></i>
+              No
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="animationBox" id="animate"></div>
+      <button id="#tambahNilai">0</button>
+      <div class="tombolReset" onclick="bukaOverlay()">
+        <i class="fa-solid fa-trash"></i>
+      </div>
+      <div class="tombolSidebar" onclick="bukaSidebar()">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+      <div id="sidebar">
+        <i
+          class="fa-solid fa-x"
+          onclick="tutupSidebar()"
+          style="font-size: 20px; padding: 15px"
+        ></i>
+        <h5>Simple Clicker Game</h5>
+        <div class="item-dropdown">
+          <div class="label-item">
+            Settings
+            <i class="fa-solid fa-gear"></i>
+          </div>
+            <i class="fa-solid fa-caret-down"></i>
+        </div>
+        <div class="subitem">
+          <div class="setting">
+            Music
+            <div class="switch">
+              <label class="switch">
+                <input type="checkbox" id="musicToggle" onclick="setMusic()" checked>
+                <span class="slider round"></span>
+              </label>              
+            </div>
+          </div>
+          <div class="setting">
+            Sound effects
+            <div class="switch">
+              <label class="switch">
+                <input type="checkbox" id="sfxToggle" checked>
+                <span class="slider round"></span>
+              </label>              
+            </div>
+          </div>
+        </div>
+        <div class="item-dropdown">
+          <div class="label-item">
+            Colors
+            <i class="fa-solid fa-droplet"></i>
+          </div>
+          <i class="fa-solid fa-caret-down"></i>
+        </div>
+        <div class="colors">
+          <div class="color-box">
+            <div class="color-button" onclick="ubahWarna('0100')" style="background-color: white;"></div>
+            <div class="color-button" onclick="ubahWarna('0200')" style="background-color: black;"></div>
+            <div class="color-button" onclick="ubahWarna('0300')" style="background-color: #09122C"></div>
+            <div class="color-button" onclick="ubahWarna('0400')" style="background-color: #FABC3F"></div>
+            <div class="color-button" onclick="ubahWarna('0500')" style="background-color: #FFDECF"></div>
+          </div>
+        </div>
+      </div>
+      <audio id="bg-music" autoplay loop>
+        <source src="./assets/calm-music.mp3">
+      </audio>
+    </div>
+  </body>
+  <script src="./script.js"></script>
+</html>
