@@ -65,7 +65,9 @@ const localStorageKey = 'PLAYER_INFO';
         count++;
         playerJSON.clickCounter = count;
         localStorage.setItem(localStorageKey, JSON.stringify(playerJSON));
+
         document.getElementById("#tambahNilai").innerText = playerJSON.clickCounter;
+        document.getElementById('#tambahNilai').style.animation="";
 
         const rippleEffect = document.createElement("button");
         rippleEffect.style.animation = "ripple 3s";
@@ -89,6 +91,11 @@ const localStorageKey = 'PLAYER_INFO';
         setTimeout(function () {
           document.getElementById("animate").removeChild(rippleEffect);
         }, 3000);
+
+        setTimeout(function () {
+          document.getElementById('#tambahNilai').style.animation="pop-text 1.5s";
+        }, 10)
+
       });
 
       function resetNilai() {
@@ -156,6 +163,11 @@ const localStorageKey = 'PLAYER_INFO';
             r.style.setProperty('--text-color', '#5E6F64');
             r.style.setProperty('--highlight', '#ff9e73');
             break;
+
+          case '0600':
+            r.style.setProperty('--bg-color', '#003C43');
+            r.style.setProperty('--text-color', '#E3FEF7');
+            r.style.setProperty('--highlight', '#003036');
         
           default:
             break;
