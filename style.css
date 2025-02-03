@@ -114,6 +114,7 @@
   .color-box {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     border: 0px solid black;
   }
 
@@ -127,7 +128,7 @@
     background-color: red;
     cursor: pointer;
 
-    border: 1px solid black;
+    border: 2px solid var(--text-color);
     border-radius: 50%;
   }
 
