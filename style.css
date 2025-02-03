@@ -1,3 +1,8 @@
+:focus {
+  outline: none; /* no outline - for most browsers */
+  box-shadow: none; /* no box shadow - for some browsers or if you are using Bootstrap */
+}
+
 :root {
     --bg-color: #ffffff;
     --text-color: #000000;
@@ -62,7 +67,8 @@
   }
 
 
-  .item:hover, .item-dropdown:hover, .setting:hover, .colors:hover {
+  .item:hover, .item-dropdown:hover, .setting:hover, .colors:hover,
+  .upgrade:hover {
     background-color: var(--highlight);
     
     transition: 0.2s;
@@ -72,6 +78,33 @@
     font-size: 15px;
     padding: 10px;
     border: 0px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .upgrade{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .upgrade-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 0px solid black;
+    padding: 10px;
+  }
+  
+  .upgrade-label {
+    font-weight: 500;
+  }
+
+  .cost-box{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
   }
 
   .colors {
@@ -157,12 +190,6 @@
   .tombolSidebar:hover {
     opacity: 0.5;
     background-color: var(--highlight);
-  }
-
-  .setting {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
   }
 
 /*-------- SWITCH STYLE --------*/

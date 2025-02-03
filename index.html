@@ -100,6 +100,43 @@
             <div class="color-button" onclick="ubahWarna('0600')" style="background-color: #003C43"></div>
           </div>
         </div>
+        <div class="item-dropdown">
+          <div class="label-item">
+            Upgrade
+            <i class="fa-solid fa-arrow-up-long"></i>
+          </div>
+          <i class="fa-solid fa-caret-down"></i>
+        </div>
+        <div class="subitem">
+          <div class="upgrade" onclick="purchaseUpgrade('multiplier')">
+            <div class="upgrade-box">
+              <div class="upgrade-label">
+                Click value
+                <i class="fa-solid fa-computer-mouse"></i>
+              </div>
+                <div class="lvl-number" id="click-value"></div>      
+            </div>
+            <div class="cost-box">
+              Cost:
+              <div id="cost-1">
+              </div>
+            </div>
+          </div>
+          <div class="upgrade" onclick="purchaseUpgrade('autoClicker')">
+            <div class="upgrade-box">
+              <div class="upgrade-label">
+                Autoclick
+                <i class="fa-solid fa-computer-mouse"></i>
+              </div>
+              <div class="lvl-number" id="autoclick" ></div>       
+            </div>
+            <div class="cost-box">
+              Cost:
+              <div id="cost-2"></div>
+            </div>
+          </div>
+          
+        </div>
       </div>
       <audio id="bg-music" autoplay loop>
         <source src="./assets/calm-music.mp3">

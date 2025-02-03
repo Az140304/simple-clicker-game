@@ -7,7 +7,12 @@ const localStorageKey = 'PLAYER_INFO';
         const player = {
             name: "Player",
             clickCounter: 0,
-            colorTheme: "white"
+            colorTheme: "white",
+            clickValue: 1,
+            upgrades: {
+              multiplier: { level: 0, cost: 10 },
+              autoClicker: { level: 0, cost: 50 }
+            }
         };
 
         localStorage.setItem(localStorageKey, JSON.stringify(player));
@@ -18,8 +23,12 @@ const localStorageKey = 'PLAYER_INFO';
       var dropdown = document.getElementsByClassName("item-dropdown");
       const musicToggle = document.getElementById("musicToggle");
       const sfxToggle = document.getElementById("sfxToggle");
-      const music = document.getElementById("bg-music")
+      const music = document.getElementById("bg-music");
       var r = document.querySelector(':root');
+      const clickValue = document.getElementById("click-value");
+      const clickValueCost = document.getElementById("cost-1");
+      const autoclick = document.getElementById("autoclick");
+      const autoclickCost = document.getElementById("cost-2");
       
       musicToggle.volume = 0.2;
       var i;
@@ -28,6 +37,9 @@ const localStorageKey = 'PLAYER_INFO';
       let playerJSON = JSON.parse(playerString);
 
       document.getElementById("#tambahNilai").innerText = playerJSON.clickCounter; 
+      updateUpgradeUI();
+      
+
       ubahWarna(playerJSON.colorTheme);
 
       function setMusic() {
@@ -37,6 +49,44 @@ const localStorageKey = 'PLAYER_INFO';
           music.pause();
           music.currentTime = 0;
         }
+      }
+
+      if (playerJSON.upgrades.autoClicker.level > 0) {
+        setInterval(() => {
+          playerJSON.clickCounter += playerJSON.upgrades.autoClicker.level;
+          document.getElementById("#tambahNilai").innerText = playerJSON.clickCounter;
+          localStorage.setItem(localStorageKey, JSON.stringify(playerJSON));
+        }, 1000);
+      }
+
+      function purchaseUpgrade(upgradeType) {
+        if (playerJSON.clickCounter >= playerJSON.upgrades[upgradeType].cost) {
+          playerJSON.clickCounter -= playerJSON.upgrades[upgradeType].cost;
+          playerJSON.upgrades[upgradeType].level++;
+          
+          playerJSON.upgrades[upgradeType].cost = Math.floor(
+            playerJSON.upgrades[upgradeType].cost * 1.5
+          );
+    
+          if (upgradeType === 'multiplier') {
+            playerJSON.clickValue = 1 + playerJSON.upgrades.multiplier.level;
+          }
+    
+          localStorage.setItem(localStorageKey, JSON.stringify(playerJSON));
+          updateUpgradeUI();
+          document.getElementById("#tambahNilai").innerText = playerJSON.clickCounter;
+        } else {
+          alert("Not enough clicks to purchase this upgrade!");
+        }
+      }
+
+      function updateUpgradeUI() {
+
+        clickValue.innerText = playerJSON.upgrades.multiplier.level;
+        clickValueCost.innerText = playerJSON.upgrades.multiplier.cost;
+        autoclick.innerText = playerJSON.upgrades.autoClicker.level;
+        autoclickCost.innerText = playerJSON.upgrades.autoClicker.cost;
+    
       }
 
       function getShadowColor() {
@@ -62,12 +112,11 @@ const localStorageKey = 'PLAYER_INFO';
       tambahNilai.addEventListener("click", function () {
         
         let count = playerJSON.clickCounter;
-        count++;
+        count += playerJSON.clickValue;
         playerJSON.clickCounter = count;
         localStorage.setItem(localStorageKey, JSON.stringify(playerJSON));
 
         document.getElementById("#tambahNilai").innerText = playerJSON.clickCounter;
-        document.getElementById('#tambahNilai').style.animation="";
 
         const rippleEffect = document.createElement("button");
         rippleEffect.style.animation = "ripple 3s";
@@ -100,8 +149,18 @@ const localStorageKey = 'PLAYER_INFO';
 
       function resetNilai() {
         playerJSON.clickCounter = 0;
+        playerJSON.clickValue = 1;
 
-        localStorage.setItem(localStorageKey, JSON.stringify(playerJSON))
+        playerJSON.upgrades.multiplier.level = 0;
+        playerJSON.upgrades.multiplier.cost = 10;
+
+        playerJSON.upgrades.autoClicker.level = 0;
+        playerJSON.upgrades.autoClicker.cost = 50;
+
+
+        localStorage.setItem(localStorageKey, JSON.stringify(playerJSON));
+
+        updateUpgradeUI();
         
         let count = playerJSON.clickCounter;
 
