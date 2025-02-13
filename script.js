@@ -130,6 +130,7 @@ const localStorageKey = 'PLAYER_INFO';
           "inset 10px 10px 20px " + shadowColor;
 
         document.getElementById("animate").appendChild(rippleEffect);
+        document.getElementById('#tambahNilai').style.animation="";
         
         if (sfxToggle.checked) {
           var music = new Audio('./assets/ripple-sound-effect-d.mp3');
